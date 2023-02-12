@@ -5,17 +5,14 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: infra
+    namespace: cert-manager
     server: 'https://kubernetes.default.svc'
   source:
-    path: ''
-    repoURL: 'https://charts.jetstack.io'
-    targetRevision: v1.11.0
-    chart: cert-manager
+    path: charts/cert-manager
+    repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
+    targetRevision: HEAD
   project: default
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
