@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fluentd
+spec:
+  destination:
+    name: ''
+    namespace: logging
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: charts/fluentd-bitnami
+    repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - fluentd-values.yaml
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
