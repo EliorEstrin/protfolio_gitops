@@ -8,8 +8,8 @@ spec:
     namespace: default
     server: 'https://kubernetes.default.svc'
   source:
-    path: todo_chart
-    repoURL: 'git@github.com:elior7557/protfolio_charts.git'
+    path: application_chart
+    repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
     targetRevision: HEAD
     helm:
       valueFiles:

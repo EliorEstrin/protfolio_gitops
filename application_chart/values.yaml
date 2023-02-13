@@ -1,0 +1,52 @@
+
+# name for labels and deployment
+name: "todoapp"
+
+# replicas is the number of replicas for the deployment
+replicas: 3
+
+# port for application
+port: '5000' #application is running on port 5000
+
+image:
+  name: elior1001/protolio-todo
+  tag: 1.1.41
+
+imagePullSecret: "regcred"
+
+# DB_URL to pass to deployment should be base 64 encoded then it will be a sealed secret
+db_url: bW9uZ29kYjovL3Jvb3Q6cm9vdEBtb25nby1tb25nb2RiLWhlYWRsZXNz
+
+# mongo db Values must be declared so the apllication will be connect to the db
+mongodb:
+  # FullnameOverride is the prefix for all services and resources that will be created by the mongo sub-chart
+  fullnameOverride: "mongo-mongodb"
+  auth:
+    # Database credenditals 
+    #rootUser: root
+    #rootPassword: "root"
+    # Existing secret name with MongoDB(&reg;) credentials (keys: `mongodb-passwords`, `mongodb-root-password`, `mongodb-metrics-password`, ` mongodb-replica-set-key`)
+    existingSecret: "dbcred"
+  persistence:
+    size: 2Gi
+
+# Configuration about ingress
+ingress:
+  enabled: true 
+  # tls means wether to deploy with a tls certificate or not
+  tls: false
+  # host is the dns for the ingress
+  host: elior-crm.ddns.net 
+
+
+
+
+#Requests and limits for deployment
+resources:
+  requests:
+    memory: "16Mi"
+    cpu: "125m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
