@@ -21,8 +21,7 @@ data:
     #Import data view
     function import_data_view {
         echo "Importing data_view..."
-        OUTPUT=$(curl -X POST http://${KIBANA_URL}:${KIBANA_PORT}/api/saved_objects/_import -H "kbn-xsrf: true" --form file=@/kibana/file.ndjson))
-        #OUTPUT=$(curl -X POST http://${KIBANA_URL}:${KIBANA_PORT}/api/saved_objects/_import -H "kbn-xsrf: true" $response)
+        OUTPUT=$(curl -X POST http://${KIBANA_URL}:${KIBANA_PORT}/api/saved_objects/_import -H "kbn-xsrf: true" --form file=@/kibana/file.ndjson)
         
         SUCCESS=$(echo ${OUTPUT} | grep -o '"successCount":1' | wc -l)
         if [[ ${SUCCESS} == "1" ]]; then
