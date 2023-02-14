@@ -211,14 +211,14 @@ image:
 security:
   ## @param security.enabled Enable X-Pack Security settings
   ##
-  enabled: no
+  enabled: false
   ## @param security.elasticPassword Password for 'elastic' user
   ## Ref: https://github.com/bitnami/containers/tree/main/bitnami/elasticsearch#security
   ##
   elasticPassword: "iamdevops"
   ## @param security.existingSecret Name of the existing secret containing the Elasticsearch password and
   ##
-  #existingSecret: "escred1"
+  existingSecret: ""
   ## FIPS mode
   ## @param security.fipsMode Configure elasticsearch with FIPS 140 compliant mode
   ## Ref: https://www.elastic.co/guide/en/elasticsearch/reference/current/fips-140-compliance.html
@@ -462,7 +462,7 @@ master:
   masterOnly: true
   ## @param master.replicaCount Number of master-elegible replicas to deploy
   ##
-  replicaCount: 2
+  replicaCount: 1
   ## @param master.nameOverride String to partially override elasticsearch.master.fullname
   ##
   nameOverride: ""
