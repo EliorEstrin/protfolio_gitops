@@ -14,11 +14,11 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-cluster-issuer-key
     solvers:
-    # - http01:
-    #    ingress:
-    #      class: nginx
+    - http01:
+       ingress:
+         class: nginx
     # testing dns01
-      - dns01:
-        clouddns:
-          project: mythic-delight-377411
+      # - dns01:
+      #   clouddns:
+      #     project: mythic-delight-377411
 {{- end }}
