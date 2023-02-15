@@ -47,7 +47,7 @@ ingress:
 # Configuration about kibana dashboard:
 kibana:
   # enable the job to load kibana dashboard
-  enabled: true
+  enabled: false
   # make sure it exists in the logging namespace
   serviceName: elastic-search-kibana
   port: 5601
