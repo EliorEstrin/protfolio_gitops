@@ -15,6 +15,12 @@ image:
 imagePullSecret: "regcred"
 
 # DB_URL to pass to deployment should be base 64 encoded then it will be a sealed secret
+# a one option to pass the url
+sealedsecret:
+  enabled: true
+  db_url: AgBeWzvvjAZVbuZ1xjRhB7xq1sGCJw1oY70+2ABMhP2QIduhhYKww9NTHg+921b4o70TKNRClBQj/HXNVTTUO58WXvzgYEFQk45iRPjNhtl4blkVNjABCSQqLlnIZAT/3UojoMs9AbdxmjvD7mp6wZuLvPS5Ff0IyO+sQJ7SvHKcqZGtH/AzF2cz9CXI6GQ2LowR67nGr9rNX6hyoZPRE598em/j/uCKWHVvTdB9jvJitK+WNtRnzYSuYS52/mOfXZmeJPMJDwPkWijVhQ3G5OCzwZpydaPJQqxycdr6IvwGuPl8RZ3U+2ULorWhBQCBQkuKk/hDpRhiSmYf2iwAbjFB9WbYCdvBLm5O6URX3he6yhxIuGE09EbI2L+nnT+H+ZBLFBdfgT05wCJpsZGcZm58lF5Eqc5ZmIViGN3TmiMmY2RihjkjrGIuzVVe1K8nanKXZyIOioZ34W97uqu6MdyG8582wUSeAWMhLmNxjMMgJORkNXq+OWTktdbaw6osYwe7RDNW5gNuS+3wxzVY90/D01QKYHTtUDd/hoBy4elrEkaFP5kTL4a0LJgdCE+0uJqL1/hRi/mL3zg5O0T6n5PKmTFjPgy8V051/fs2X0zRbSy/zYsJs4r5R3oFFxAnW3YIgMZu0KIwZcQ7XZIGxVLC0eLDGaxh63cFyr18xI0XIsvz0aLfXswL8BvnXiLNR0r8N4p5MvPkHiVPBUaSXtXzTy8DcOrwWv+t0eoqci4x5wSxALdTFXmzpCA=
+
+# if sealedsecret disabled pass a base 64 url to the mongodb
 db_url: bW9uZ29kYjovL3Jvb3Q6cm9vdEBtb25nby1tb25nb2RiLWhlYWRsZXNz
 
 # mongo db Values must be declared so the apllication will be connect to the db
