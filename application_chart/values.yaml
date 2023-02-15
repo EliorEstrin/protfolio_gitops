@@ -43,7 +43,7 @@ ingress:
   # tls means wether to deploy with a tls certificate or not
   tls: false
   # host is the dns for the ingress
-  host: elior-crm.ddns.net 
+  host: taskmaster.site
 
 # Configuration about kibana dashboard:
 kibana:
