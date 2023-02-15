@@ -43,7 +43,7 @@ ingress:
   # tls means wether to deploy with a tls certificate or not
   tls: true
   # wether to use staging cerficiate or production cluster issuer if false set to production.
-  prod: true
+  prod: false
   # host is the dns for the ingress
   host: taskmaster.site
   # ingress_class the class name for the ingress
