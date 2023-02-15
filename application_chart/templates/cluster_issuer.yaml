@@ -5,7 +5,11 @@ metadata:
   name: letsencrypt-cluster-issuer
 spec:
   acme:
+    {{- if .Values.ingress.staging }}
     server: https://acme-v02.api.letsencrypt.org/directory
+    {{- else }}
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    {{- end  }}
     email: elior1001@gmail.com
     privateKeySecretRef:
       name: letsencrypt-cluster-issuer-key

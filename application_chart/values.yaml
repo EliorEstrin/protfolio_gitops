@@ -42,6 +42,8 @@ ingress:
   enabled: true 
   # tls means wether to deploy with a tls certificate or not
   tls: true
+  # wether to use staging cerficiate or production cluster issuer
+  staging: true
   # host is the dns for the ingress
   host: taskmaster.site
 
