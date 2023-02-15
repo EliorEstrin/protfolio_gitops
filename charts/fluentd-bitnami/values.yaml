@@ -383,7 +383,5 @@ fileConfigs:
         host "es-elasticsearch"
         port 9200
         path ""
-        user elastic
-        password iamdevops
       </match>
     </label>
