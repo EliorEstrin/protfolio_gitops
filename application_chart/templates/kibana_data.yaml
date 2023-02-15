@@ -124,7 +124,7 @@ data:
           "version": "WzExNTEsMV0=",
           "attributes": {
             "fieldAttrs": "{\"kubernetes.pod_ip\":{\"count\":3},\"method\":{\"count\":5},\"protocol\":{\"count\":2},\"referer\":{\"count\":1},\"response_status\":{\"count\":5}}",
-            "title": "logstash-todo",
+            "title": "logstash-2023.02.15",
             "timeFieldName": "@timestamp",
             "sourceFilters": "[]",
             "fields": "[]",
