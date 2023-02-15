@@ -43,14 +43,14 @@ ingress:
   # tls means wether to deploy with a tls certificate or not
   tls: true
   # wether to use staging cerficiate or production cluster issuer if false set to production.
-  staging: true
+  prod: true
   # host is the dns for the ingress
   host: taskmaster.site
   # ingress_class the class name for the ingress
   ingress_class: "nginx"
   # Cluster issuer mail only if tls is enabled
   email: "elior1001@gmail.com"
-1
+
 
 # Configuration about kibana dashboard:
 kibana:
