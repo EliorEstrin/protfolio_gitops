@@ -19,6 +19,6 @@ spec:
     #      class: nginx
     # testing dns01
       - dns01:
-        cloudDNS:
+        clouddns:
           project: mythic-delight-377411
 {{- end }}
