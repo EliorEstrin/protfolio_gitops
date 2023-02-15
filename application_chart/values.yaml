@@ -50,7 +50,7 @@ ingress:
   ingress_class: "nginx"
   # Cluster issuer mail only if tls is enabled
   email: "elior1001@gmail.com"
-
+1
 
 # Configuration about kibana dashboard:
 kibana:
