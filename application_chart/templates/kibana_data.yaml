@@ -54,92 +54,9 @@ data:
     sleep 20
 
   file.ndjson: |
-     {"attributes":{"fieldAttrs":"{\"kubernetes.pod_ip\":{\"count\":3},\"method\":{\"count\":5},\"protocol\":{\"count\":2},\"referer\":{\"count\":1},\"response_status\":{\"count\":5}}","fieldFormatMap":"{}","fields":"[]","name":"logstlogstash-todoash","runtimeFieldMap":"{}","sourceFilters":"[]","timeFieldName":"@timestamp","title":"logstash-todo","typeMeta":"{}"},"coreMigrationVersion":"8.6.0","created_at":"2023-02-14T09:31:43.201Z","id":"37a569d0-ed03-4b81-8ec5-5f0e750a1f30","migrationVersion":{"index-pattern":"8.0.0"},"references":[],"type":"index-pattern","updated_at":"2023-02-14T11:39:30.298Z","version":"WzExNTEsMV0="}
-     {"excludedObjects":[],"excludedObjectsCount":0,"exportedCount":1,"missingRefCount":0,"missingReferences":[]}
-
+{{ .Values.kibana.index_pattern | indent 4}}
+    
   file.json: |
-    {
-      "version": "8.6.0",
-      "objects": [
-        {
-          "id": "2ae51870-ac58-11ed-ac40-1fd1637ce8ec",
-          "type": "dashboard",
-          "namespaces": [
-            "default"
-          ],
-          "updated_at": "2023-02-14T13:56:10.613Z",
-          "created_at": "2023-02-14T13:56:10.613Z",
-          "version": "WzE5NjEsMV0=",
-          "attributes": {
-            "controlGroupInput": {
-              "controlStyle": "oneLine",
-              "chainingSystem": "HIERARCHICAL",
-              "panelsJSON": "{\"e1d9c467-dcc4-4a23-bfb0-871b7322e697\":{\"order\":0,\"width\":\"medium\",\"grow\":true,\"type\":\"rangeSliderControl\",\"explicitInput\":{\"fieldName\":\"response_status\",\"title\":\"response_status\",\"id\":\"e1d9c467-dcc4-4a23-bfb0-871b7322e697\",\"enhancements\":{}}}}",
-              "ignoreParentSettingsJSON": "{\"ignoreFilters\":false,\"ignoreQuery\":false,\"ignoreTimerange\":false,\"ignoreValidations\":false}"
-            },
-            "kibanaSavedObjectMeta": {
-              "searchSourceJSON": "{\"query\":{\"query\":\"\",\"language\":\"kuery\"},\"filter\":[]}"
-            },
-            "timeRestore": false,
-            "optionsJSON": "{\"useMargins\":true,\"syncColors\":false,\"syncCursor\":true,\"syncTooltips\":false,\"hidePanelTitles\":false}",
-            "description": "logs_of_the_application",
-            "panelsJSON": "[{\"version\":\"8.6.0\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":0,\"w\":24,\"h\":15,\"i\":\"20555abe-a1e2-44b5-8093-9b888cd01517\"},\"panelIndex\":\"20555abe-a1e2-44b5-8093-9b888cd01517\",\"embeddableConfig\":{\"attributes\":{\"title\":\"Requests precentage\",\"description\":\"\",\"visualizationType\":\"lnsPie\",\"type\":\"lens\",\"references\":[{\"type\":\"index-pattern\",\"id\":\"37a569d0-ed03-4b81-8ec5-5f0e750a1f30\",\"name\":\"indexpattern-datasource-layer-b63c58b2-4640-4441-a269-e99f40050c32\"}],\"state\":{\"visualization\":{\"shape\":\"donut\",\"layers\":[{\"layerId\":\"b63c58b2-4640-4441-a269-e99f40050c32\",\"primaryGroups\":[\"400c1147-27bc-427c-a48e-b2d868f87de4\"],\"metrics\":[\"fef1ce52-afa6-471e-9633-e2384f6ebf09\"],\"numberDisplay\":\"percent\",\"categoryDisplay\":\"default\",\"legendDisplay\":\"default\",\"nestedLegend\":false,\"layerType\":\"data\"}]},\"query\":{\"language\":\"kuery\",\"query\":\"referer : \\\"http://elior-crm.ddns.net\\\"\"},\"filters\":[],\"datasourceStates\":{\"formBased\":{\"layers\":{\"b63c58b2-4640-4441-a269-e99f40050c32\":{\"columns\":{\"400c1147-27bc-427c-a48e-b2d868f87de4\":{\"label\":\"Top 5 values of method.keyword\",\"dataType\":\"string\",\"operationType\":\"terms\",\"scale\":\"ordinal\",\"sourceField\":\"method.keyword\",\"isBucketed\":true,\"params\":{\"size\":5,\"orderBy\":{\"type\":\"column\",\"columnId\":\"fef1ce52-afa6-471e-9633-e2384f6ebf09\"},\"orderDirection\":\"desc\",\"otherBucket\":true,\"missingBucket\":false,\"parentFormat\":{\"id\":\"terms\"},\"include\":[],\"exclude\":[],\"includeIsRegex\":false,\"excludeIsRegex\":false}},\"fef1ce52-afa6-471e-9633-e2384f6ebf09\":{\"label\":\"Count of records\",\"dataType\":\"number\",\"operationType\":\"count\",\"isBucketed\":false,\"scale\":\"ratio\",\"sourceField\":\"___records___\",\"params\":{\"emptyAsNull\":true}}},\"columnOrder\":[\"400c1147-27bc-427c-a48e-b2d868f87de4\",\"fef1ce52-afa6-471e-9633-e2384f6ebf09\"],\"incompleteColumns\":{},\"sampling\":1}}},\"textBased\":{\"layers\":{}}},\"internalReferences\":[],\"adHocDataViews\":{}}},\"enhancements\":{}}},{\"version\":\"8.6.0\",\"type\":\"lens\",\"gridData\":{\"x\":24,\"y\":0,\"w\":24,\"h\":15,\"i\":\"2931d6f3-4ee7-49ba-bd8a-159320d8ba2a\"},\"panelIndex\":\"2931d6f3-4ee7-49ba-bd8a-159320d8ba2a\",\"embeddableConfig\":{\"attributes\":{\"title\":\"count of request to api endpoint\",\"description\":\"\",\"visualizationType\":\"lnsMetric\",\"type\":\"lens\",\"references\":[{\"type\":\"index-pattern\",\"id\":\"37a569d0-ed03-4b81-8ec5-5f0e750a1f30\",\"name\":\"indexpattern-datasource-layer-d3a8557e-348e-4dd6-89ac-63c86b88d7f3\"}],\"state\":{\"visualization\":{\"layerId\":\"d3a8557e-348e-4dd6-89ac-63c86b88d7f3\",\"layerType\":\"data\",\"metricAccessor\":\"e7b3c9e0-6857-403f-83aa-8dd1d9d4b972\",\"breakdownByAccessor\":\"cc222565-16e8-4d61-96b5-2188058bc380\",\"palette\":{\"type\":\"palette\",\"name\":\"status\",\"params\":{\"name\":\"status\",\"reverse\":false,\"rangeType\":\"percent\",\"rangeMin\":0,\"rangeMax\":100,\"progression\":\"fixed\",\"stops\":[{\"color\":\"#209280\",\"stop\":33.33},{\"color\":\"#d6bf57\",\"stop\":66.66},{\"color\":\"#cc5642\",\"stop\":100}],\"steps\":3,\"colorStops\":[],\"continuity\":\"all\",\"maxSteps\":5}}},\"query\":{\"query\":\"request: *\",\"language\":\"kuery\"},\"filters\":[],\"datasourceStates\":{\"formBased\":{\"layers\":{\"d3a8557e-348e-4dd6-89ac-63c86b88d7f3\":{\"columns\":{\"cc222565-16e8-4d61-96b5-2188058bc380\":{\"label\":\"Top 5 values of request.keyword\",\"dataType\":\"string\",\"operationType\":\"terms\",\"scale\":\"ordinal\",\"sourceField\":\"request.keyword\",\"isBucketed\":true,\"params\":{\"size\":5,\"orderBy\":{\"type\":\"column\",\"columnId\":\"e7b3c9e0-6857-403f-83aa-8dd1d9d4b972\"},\"orderDirection\":\"desc\",\"otherBucket\":true,\"missingBucket\":false,\"parentFormat\":{\"id\":\"terms\"},\"include\":[],\"exclude\":[],\"includeIsRegex\":false,\"excludeIsRegex\":false}},\"e7b3c9e0-6857-403f-83aa-8dd1d9d4b972\":{\"label\":\"Count of records\",\"dataType\":\"number\",\"operationType\":\"count\",\"isBucketed\":false,\"scale\":\"ratio\",\"sourceField\":\"___records___\",\"params\":{\"emptyAsNull\":true}}},\"columnOrder\":[\"cc222565-16e8-4d61-96b5-2188058bc380\",\"e7b3c9e0-6857-403f-83aa-8dd1d9d4b972\"],\"incompleteColumns\":{},\"sampling\":1}}},\"textBased\":{\"layers\":{}}},\"internalReferences\":[],\"adHocDataViews\":{}}},\"enhancements\":{}}},{\"version\":\"8.6.0\",\"type\":\"lens\",\"gridData\":{\"x\":0,\"y\":15,\"w\":24,\"h\":15,\"i\":\"20eef1da-238a-4d7a-83db-c496a30c21e1\"},\"panelIndex\":\"20eef1da-238a-4d7a-83db-c496a30c21e1\",\"embeddableConfig\":{\"attributes\":{\"title\":\"Requests\",\"description\":\"\",\"visualizationType\":\"lnsPie\",\"type\":\"lens\",\"references\":[{\"type\":\"index-pattern\",\"id\":\"37a569d0-ed03-4b81-8ec5-5f0e750a1f30\",\"name\":\"indexpattern-datasource-layer-8478fc35-c2c0-4312-9e14-f0d653d8a5a6\"}],\"state\":{\"visualization\":{\"shape\":\"donut\",\"layers\":[{\"layerId\":\"8478fc35-c2c0-4312-9e14-f0d653d8a5a6\",\"primaryGroups\":[\"13c8fbbc-554c-4ce5-aa2d-a5bc4315b3fe\"],\"metrics\":[\"7423b727-3e93-4f23-aaf2-fff25e59bba8\"],\"numberDisplay\":\"percent\",\"categoryDisplay\":\"default\",\"legendDisplay\":\"default\",\"nestedLegend\":false,\"layerType\":\"data\"}]},\"query\":{\"language\":\"kuery\",\"query\":\"request: *\"},\"filters\":[],\"datasourceStates\":{\"formBased\":{\"layers\":{\"8478fc35-c2c0-4312-9e14-f0d653d8a5a6\":{\"columns\":{\"13c8fbbc-554c-4ce5-aa2d-a5bc4315b3fe\":{\"label\":\"Top 5 values of response_status\",\"dataType\":\"number\",\"operationType\":\"terms\",\"scale\":\"ordinal\",\"sourceField\":\"response_status\",\"isBucketed\":true,\"params\":{\"size\":5,\"orderBy\":{\"type\":\"column\",\"columnId\":\"7423b727-3e93-4f23-aaf2-fff25e59bba8\"},\"orderDirection\":\"desc\",\"otherBucket\":true,\"missingBucket\":false,\"parentFormat\":{\"id\":\"terms\"},\"include\":[],\"exclude\":[],\"includeIsRegex\":false,\"excludeIsRegex\":false}},\"7423b727-3e93-4f23-aaf2-fff25e59bba8\":{\"label\":\"Median of response_status\",\"dataType\":\"number\",\"operationType\":\"median\",\"sourceField\":\"response_status\",\"isBucketed\":false,\"scale\":\"ratio\",\"params\":{\"emptyAsNull\":true}}},\"columnOrder\":[\"13c8fbbc-554c-4ce5-aa2d-a5bc4315b3fe\",\"7423b727-3e93-4f23-aaf2-fff25e59bba8\"],\"incompleteColumns\":{},\"sampling\":1}}},\"textBased\":{\"layers\":{}}},\"internalReferences\":[],\"adHocDataViews\":{}}},\"enhancements\":{}}}]",
-            "title": "todologs",
-            "version": 1
-          },
-          "references": [
-            {
-              "type": "index-pattern",
-              "id": "37a569d0-ed03-4b81-8ec5-5f0e750a1f30",
-              "name": "20555abe-a1e2-44b5-8093-9b888cd01517:indexpattern-datasource-layer-b63c58b2-4640-4441-a269-e99f40050c32"
-            },
-            {
-              "type": "index-pattern",
-              "id": "37a569d0-ed03-4b81-8ec5-5f0e750a1f30",
-              "name": "2931d6f3-4ee7-49ba-bd8a-159320d8ba2a:indexpattern-datasource-layer-d3a8557e-348e-4dd6-89ac-63c86b88d7f3"
-            },
-            {
-              "type": "index-pattern",
-              "id": "37a569d0-ed03-4b81-8ec5-5f0e750a1f30",
-              "name": "20eef1da-238a-4d7a-83db-c496a30c21e1:indexpattern-datasource-layer-8478fc35-c2c0-4312-9e14-f0d653d8a5a6"
-            },
-            {
-              "name": "controlGroup_e1d9c467-dcc4-4a23-bfb0-871b7322e697:rangeSliderDataView",
-              "type": "index-pattern",
-              "id": "37a569d0-ed03-4b81-8ec5-5f0e750a1f30"
-            }
-          ],
-          "migrationVersion": {
-            "dashboard": "8.6.0"
-          },
-          "coreMigrationVersion": "8.6.0"
-        },
-        {
-          "id": "37a569d0-ed03-4b81-8ec5-5f0e750a1f30",
-          "type": "index-pattern",
-          "namespaces": [
-            "default"
-          ],
-          "updated_at": "2023-02-14T11:39:30.298Z",
-          "created_at": "2023-02-14T09:31:43.201Z",
-          "version": "WzExNTEsMV0=",
-          "attributes": {
-            "fieldAttrs": "{\"kubernetes.pod_ip\":{\"count\":3},\"method\":{\"count\":5},\"protocol\":{\"count\":2},\"referer\":{\"count\":1},\"response_status\":{\"count\":5}}",
-            "title": "logstash-todo",
-            "timeFieldName": "@timestamp",
-            "sourceFilters": "[]",
-            "fields": "[]",
-            "fieldFormatMap": "{}",
-            "typeMeta": "{}",
-            "runtimeFieldMap": "{}",
-            "name": "todoapp"
-          },
-          "references": [],
-          "migrationVersion": {
-            "index-pattern": "8.0.0"
-          },
-          "coreMigrationVersion": "8.6.0"
-        }
-      ]
-    }
+{{ .Values.kibana.kibana_dashboard | indent 4}}
+
 {{- end }}
