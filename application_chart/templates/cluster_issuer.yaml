@@ -18,7 +18,7 @@ spec:
     #    ingress:
     #      class: nginx
     # testing dns01
-    - dns01:
-      cloudDNS:
-        project: mythic-delight-377411
+      - dns01:
+        cloudDNS:
+          project: mythic-delight-377411
 {{- end }}
