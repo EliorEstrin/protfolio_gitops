@@ -40,17 +40,18 @@ dashboards:
     Alert-Dashboard:
       file: dashboards/alert-dashboards.json
 
-notifiers:
-  - name: slack-alerts-channel
-    type: slack
-    uid: 8oIQIA14k
-    org_id: 2
-    is_default: true
-    disable_resolve_message: false
-    # See `Supported Settings` section for settings supporter for each
-    # alert notification type.
-    settings:
-      url: https://hooks.slack.com/services/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
+notifiers: 
+  notifiers.yaml:
+    - name: slack-alerts-channel
+      type: slack
+      uid: 8oIQIA14k
+      org_id: 2
+      is_default: true
+      disable_resolve_message: false
+      # See `Supported Settings` section for settings supporter for each
+      # alert notification type.
+      settings:
+        url: https://hooks.slack.com/services/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
 
 
 # notifiers: {}
