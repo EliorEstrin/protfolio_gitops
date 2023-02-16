@@ -34,7 +34,7 @@ dashboardProviders:
 dashboards:
   default:
     nodeExporter-dashboard4:
-    file: dashboards/nodeExporter-dashboard.json
+      file: dashboards/nodeExporter-dashboard.json
     ingressnginx-dashboard4:
       file: dashboards/ingress-dashboard.json
     
