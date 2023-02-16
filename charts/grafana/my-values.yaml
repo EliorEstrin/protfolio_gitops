@@ -16,3 +16,7 @@ datasources:
      access: proxy
      isDefault: true
 
+dashboards:
+  default:
+    local-dashboard-gitlab:
+      url: https://github.com/rfmoz/grafana-dashboards/blob/master/prometheus/node-exporter-full.json
