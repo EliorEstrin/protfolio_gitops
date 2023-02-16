@@ -40,22 +40,22 @@ dashboards:
     Alert-Dashboard:
       file: dashboards/ingress-dashboard.json
 
-notifiers:
-  - name: slack-alerts-channel
-    type: slack
-    uid: notifier1
-    # either
-    org_id: 2
-    # or
-    org_name: Main Org.
-    is_default: true
-    send_reminder: true
-    frequency: 1h
-    disable_resolve_message: false
-    # See `Supported Settings` section for settings supporter for each
-    # alert notification type.
-    settings:
-      url: https://hooks.slack.com/services/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
+# notifiers:
+#   - name: slack-alerts-channel
+#     type: slack
+#     uid: notifier1
+#     # either
+#     org_id: 2
+#     # or
+#     org_name: Main Org.
+#     is_default: true
+#     send_reminder: true
+#     frequency: 1h
+#     disable_resolve_message: false
+#     # See `Supported Settings` section for settings supporter for each
+#     # alert notification type.
+#     settings:
+#       url: https://hooks.slack.com/services/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
 
 # - uid: JEVdi01Vz
 #   name: slack-alerts-channel
