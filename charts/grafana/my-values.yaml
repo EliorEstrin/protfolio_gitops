@@ -30,10 +30,16 @@ dashboardProviders:
         options:
           path: /var/lib/grafana/dashboards/default
 
+# dashboards:
+#   default:
+#     nodeExporter-dashboard2:
+#       gnetId: 1860
+#       datasource: Prometheus
+
 dashboards:
   default:
-    nodeExporter-dashboard:
-      gnetId: 1860
+    nodeExporter-dashboard2:
+      gnetId: 15172
       datasource: Prometheus
 # dashboards:
 #   default:
