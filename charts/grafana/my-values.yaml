@@ -18,5 +18,5 @@ datasources:
 
 dashboards:
   default:
-    local-dashboard-gitlab:
-      url: https://github.com/rfmoz/grafana-dashboards/blob/master/prometheus/node-exporter-full.json
+    nodeExporter-dashboard:
+      file: dashboards/nodeExporter-dashboard.json
