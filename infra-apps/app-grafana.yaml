@@ -11,6 +11,9 @@ spec:
     path: charts/grafana
     repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
     targetRevision: HEAD
+    helm:
+      valueFiles:
+      - my-values.yaml 
   project: default
   syncPolicy:
     automated:
