@@ -18,19 +18,26 @@ datasources:
 
 ## Importing custom dashboards
 dashboardProviders:
- dashboardproviders.yaml:
-   apiVersion: 1
-   providers:
-   - name: 'default'
-     orgId: 1
-     folder: ''
-     type: file
-     disableDeletion: false
-     editable: true
-     options:
-       path: /dashboards/nodeExporter-dashboard.json
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+      - name: default
+        orgId: 1
+        folder: ""
+        type: file
+        disableDeletion: false
+        editable: false
+        options:
+          path: /var/lib/grafana/dashboards/default
 
 dashboards:
   default:
     nodeExporter-dashboard:
-      file: dashboards/nodeExporter-dashboard.json
+      gnetId: 1860
+      datasource: Prometheus
+
+
+# dashboards:
+#   default:
+#     nodeExporter-dashboard:
+#       file: dashboards/nodeExporter-dashboard.json
