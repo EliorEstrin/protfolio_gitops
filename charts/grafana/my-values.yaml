@@ -29,14 +29,23 @@ dashboardProviders:
         editable: false
         options:
           path: /var/lib/grafana/dashboards/default
+      - name: ingress
+        orgId: 1
+        folder: ""
+        type: file
+        disableDeletion: false
+        editable: false
+        options:
+          path: /var/lib/grafana/dashboards/default
 
 # node exporter
 dashboards:
   default:
     nodeExporter-dashboard4:
+    file: dashboards/nodeExporter-dashboard.json
+  ingress:
+    ingressnginx-dashboard4:
       file: dashboards/nodeExporter-dashboard.json
-    # ingressnginx-dashboard4:
-    #   file: dashboards/nodeExporter-dashboard.json
     
 
 
