@@ -16,7 +16,7 @@ datasources:
      access: proxy
      isDefault: true
 
-dashboards:
-  default:
-    nodeExporter-dashboard:
-      file: dashboards/nodeExporter-dashboard.json
+# dashboards:
+#   default:
+#     nodeExporter-dashboard:
+#       file: dashboards/nodeExporter-dashboard.json
