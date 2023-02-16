@@ -35,10 +35,16 @@ dashboardProviders:
 #     nodeExporter-dashboard:
 #       gnetId: 1860
 #       datasource: Prometheus
+# dashboards:
+#   default:
+#     nodeExporter-dashboard4:
+#       file: dashboards/nodeExporter-dashboard.json
+
 dashboards:
   default:
-    nodeExporter-dashboard4:
-      file: dashboards/nodeExporter-dashboard.json
+    nodeExporter-dashboard:
+      gnetId: 405
+      datasource: Prometheus
 
 
 # dashboards:
