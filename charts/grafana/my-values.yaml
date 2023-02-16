@@ -38,7 +38,7 @@ dashboardProviders:
 dashboards:
   default:
     nodeExporter-dashboard4:
-      file: dashboards/custom-dashboard.json
+      file: dashboards/nodeExporter-dashboard.json
 
 
 # dashboards:
