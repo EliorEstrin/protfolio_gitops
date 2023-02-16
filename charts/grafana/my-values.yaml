@@ -16,6 +16,20 @@ datasources:
      access: proxy
      isDefault: true
 
+## Importing custom dashboards
+dashboardProviders:
+ dashboardproviders.yaml:
+   apiVersion: 1
+   providers:
+   - name: 'default'
+     orgId: 1
+     folder: ''
+     type: file
+     disableDeletion: false
+     editable: true
+     options:
+       path: /dashboards/nodeExporter-dashboard.json
+
 dashboards:
   default:
     nodeExporter-dashboard:
