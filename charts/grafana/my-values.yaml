@@ -40,15 +40,14 @@ dashboards:
     Alert-Dashboard:
       file: dashboards/alert-dashboards.json
 
-notifiers: 
-  notifiers.yaml:
-    - name: slack-alerts-channel
-      type: slack
-      uid: notifier1
-      org_id: 2
-      is_default: true
-      settings:
-        url: https://hooks.slack.com/services/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
+# notifiers: 
+#   - name: slack-alerts-channel
+#     type: slack
+#     uid: "notifier1"
+#     org_id: "a"
+#     is_default: true
+#     settings:
+#       url: https://hooks.slack.com/services/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
 
 
 # notifiers: {}
