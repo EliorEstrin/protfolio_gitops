@@ -1,0 +1,117 @@
+{{- if .Values.grafana.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-data
+  namespace: monitoring
+data:
+  
+  curl-script.sh: |
+    #!/bin/bash
+
+    yum install epel-release -y
+    yum update -y
+    yum install -y jq
+
+
+    #Wait for  to be available & healthy
+    function wait_for_grafana {
+        echo "Testing connection to Kibana"
+        until [ "$(curl -s -o /dev/null -w '%{http_code}' http://${GRAFANA_URL}:${GRAFANA_PORT} --user 'admin:iamdevops')" == "200" ]; do
+        sleep 5
+        echo "Waiting for Kibana to start..."
+        done
+        echo "Kibana is now available"
+    }
+
+    function create_folder {
+
+        echo "Creating a folder for the alerts..."
+        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/folders -d @grafana/folder.json --user "admin:iamdevops"  -H "Content-Type: application/json")
+        SUCCESS=$(echo "$OUTPUT" | jq 'has("id")')
+        if [[ ${SUCCESS} ]]; then
+            printf "\n######### Created Folder Susscefully! #############################\n"
+        else
+            printf "\n########## Failure while creating folder #############\n"
+        fi
+
+    }
+
+    function Import_alerts {
+        echo "importing the alerts..."
+        OUTPUT_1=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert1.json --user "admin:iamdevops"  -H "Content-Type: application/json")
+        OUTPUT_2=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert2.json --user "admin:iamdevops"  -H "Content-Type: application/json")
+        OUTPUT_3=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert3.json --user "admin:iamdevops"  -H "Content-Type: application/json")
+
+        SUCCESS1=$(echo "$OUTPUT_1" | jq 'has("id")')
+        SUCCESS2=$(echo "$OUTPUT_2" | jq 'has("id")')
+        SUCCESS3=$(echo "$OUTPUT_3" | jq 'has("id")')
+
+        if [[ ${SUCCESS1} ]]; then
+        printf "\n########## Created Alert_1 Susscefully! #############################\n"
+        else
+            printf "\n########## Failure while Creating Alert_1 folder #############\n"
+        fi
+
+        if [[ ${SUCCESS2} ]]; then
+        printf "\n########## Created Alert_2 Susscefully! #############################\n"
+        else
+            printf "\n########## Failure while creating Alert_2 #############\n"
+        fi
+
+        if [[ ${SUCCESS2} ]]; then
+        printf "\n########## Created Alert_2 Susscefully! #############################\n"
+        else
+            printf "\n########## Failure while creating Alert_2 #############\n"
+        fi
+    }
+
+    function import_contact_point {
+        
+        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/contact-points -d @grafana/slack.json --user "admin:iamdevops" -H "Content-Type: application/json")
+        SUCCESS=$(echo "$OUTPUT" | jq 'has("uid")')
+        if [[ ${SUCCESS} ]]; then
+            printf "\n########## Added Slack Contact Point Susscefully! #############################\n"
+        else
+            printf "\n########## Failure while Adding Slack Contact Point #############\n"
+        fi
+
+        ## Updating policie for the contact
+        OUTPUT=$(curl -X PUT http://http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/policies -d @grafana/policy.json --user "admin:iamdevops" -H "Content-Type: application/json")
+        SUCCESS=$(echo "$OUTPUT" | jq '.message == "policies updated"')
+
+        if [[ ${SUCCESS} ]]; then
+            printf "\n########## Added Policies for the contact Point Susscefully! #############################\n"
+        else
+            printf "\n########## Failure while Adding  Policies To Contact Point #############\n"
+        fi
+    }
+
+    wait_for_grafana
+    create_folder
+    Import_alerts
+    import_contact_point
+
+
+  alert1.json: |
+{{ .Values.grafana.alert_1 | indent 4}}
+    
+  alert2.json: |
+{{ .Values.grafana.alert_2 | indent 4}}
+
+  alert3.json: |
+{{ .Values.grafana.alert_3 | indent 4}}
+
+  folder.json: |
+{{ .Values.grafana.folder | indent 4}}
+
+# contact_point
+  slack.json: |
+{{ .Values.grafana.contact_point | indent 4}}
+
+#contact Policies
+  policy.json: |
+{{ .Values.grafana.contact_policy | indent 4}}
+
+
+{{- end }}

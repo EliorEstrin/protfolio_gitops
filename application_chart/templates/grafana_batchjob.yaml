@@ -1,0 +1,34 @@
+{{- if .Values.grafana.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: grafana-import
+  namespace: monitoring
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "5"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      volumes:
+      - name: grafana-data
+        configMap:
+            name: grafana-data
+            defaultMode: 0777
+      containers:
+      - name: grafana-import
+        image: centos:centos7
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: GRAFANA_URL
+          value: "{{ .Values.grafana.serviceName }}"
+        - name: GRAFANA_PORT
+          value: "{{ .Values.grafana.port }}"
+        command: ["/bin/sh","/grafana/curl-script.sh"]
+        volumeMounts:
+        - name: grafana-data
+          mountPath: /grafana/
+{{- end }}

@@ -148,8 +148,28 @@ kibana:
       ]
     }
 
-
-
+# Configuration about grafana alerts
+grafana: 
+  # enable the job to load alerts and contacts point
+  enabled: true
+  # make sure it exists in the monitoring namespace
+  serviceName: grafana
+  port: 8083
+  alert_1: |
+    {"id":1,"uid":"8oIQIA14k","orgID":1,"folderUID":"GnjUIAJVz","ruleGroup":"ops","title":"High Memory Usage in nodes","condition":"C","data":[{"refId":"A","queryType":"","relativeTimeRange":{"from":21600,"to":0},"datasourceUid":"PBFA97CFB590B2093","model":{"datasource":{"type":"prometheus","uid":"PBFA97CFB590B2093"},"editorMode":"code","expr":"(node_memory_MemTotal_bytes - node_memory_MemFree_bytes) / (node_memory_MemTotal_bytes) * 100 ","interval":"","intervalMs":15000,"legendFormat":"__auto","maxDataPoints":43200,"range":true,"refId":"A"}},{"refId":"B","queryType":"","relativeTimeRange":{"from":21600,"to":0},"datasourceUid":"-100","model":{"conditions":[{"evaluator":{"params":[],"type":"gt"},"operator":{"type":"and"},"query":{"params":["B"]},"reducer":{"params":[],"type":"last"},"type":"query"}],"datasource":{"type":"__expr__","uid":"-100"},"expression":"A","hide":false,"intervalMs":1000,"maxDataPoints":43200,"reducer":"last","refId":"B","type":"reduce"}},{"refId":"C","queryType":"","relativeTimeRange":{"from":21600,"to":0},"datasourceUid":"-100","model":{"conditions":[{"evaluator":{"params":[75],"type":"gt"},"operator":{"type":"and"},"query":{"params":["C"]},"reducer":{"params":[],"type":"last"},"type":"query"}],"datasource":{"type":"__expr__","uid":"-100"},"expression":"B","hide":false,"intervalMs":1000,"maxDataPoints":43200,"refId":"C","type":"threshold"}}],"updated":"2023-02-16T16:09:23Z","noDataState":"NoData","execErrState":"Error","for":"5m","annotations":{"__dashboardUid__":"-FKhqTJ4z","__panelId__":"2"}}
+  alert_2: |
+    {"id":2,"uid":"za_6IA14z","orgID":1,"folderUID":"GnjUIAJVz","ruleGroup":"ops","title":"Pod Isnt Ready","condition":"C","data":[{"refId":"A","queryType":"","relativeTimeRange":{"from":600,"to":0},"datasourceUid":"PBFA97CFB590B2093","model":{"editorMode":"code","expr":"sum by (namespace) (kube_pod_status_ready{condition=\"false\"})","hide":false,"intervalMs":1000,"legendFormat":"__auto","maxDataPoints":43200,"range":true,"refId":"A"}},{"refId":"B","queryType":"","relativeTimeRange":{"from":600,"to":0},"datasourceUid":"-100","model":{"conditions":[{"evaluator":{"params":[],"type":"gt"},"operator":{"type":"and"},"query":{"params":["B"]},"reducer":{"params":[],"type":"last"},"type":"query"}],"datasource":{"type":"__expr__","uid":"-100"},"expression":"A","hide":false,"intervalMs":1000,"maxDataPoints":43200,"reducer":"last","refId":"B","type":"reduce"}},{"refId":"C","queryType":"","relativeTimeRange":{"from":600,"to":0},"datasourceUid":"-100","model":{"conditions":[{"evaluator":{"params":[1],"type":"gt"},"operator":{"type":"and"},"query":{"params":["C"]},"reducer":{"params":[],"type":"last"},"type":"query"}],"datasource":{"type":"__expr__","uid":"-100"},"expression":"B","hide":false,"intervalMs":1000,"maxDataPoints":43200,"refId":"C","type":"threshold"}}],"updated":"2023-02-16T16:09:23Z","noDataState":"NoData","execErrState":"Error","for":"5m","annotations":{"summary":"pod is not  in the ready state"}}
+  alert_3: | 
+    {"id":3,"uid":"8hCkH014k","orgID":1,"folderUID":"GnjUIAJVz","ruleGroup":"ops","title":"High Cpu Usage","condition":"C","data":[{"refId":"A","queryType":"","relativeTimeRange":{"from":600,"to":0},"datasourceUid":"PBFA97CFB590B2093","model":{"editorMode":"code","expr":"(sum by(instance) (irate(node_cpu_seconds_total{mode!=\"idle\"}[2m])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total[2m])))) * 100","hide":false,"intervalMs":1000,"legendFormat":"__auto","maxDataPoints":43200,"range":true,"refId":"A"}},{"refId":"B","queryType":"","relativeTimeRange":{"from":600,"to":0},"datasourceUid":"-100","model":{"conditions":[{"evaluator":{"params":[],"type":"gt"},"operator":{"type":"and"},"query":{"params":["B"]},"reducer":{"params":[],"type":"last"},"type":"query"}],"datasource":{"type":"__expr__","uid":"-100"},"expression":"A","hide":false,"intervalMs":1000,"maxDataPoints":43200,"reducer":"last","refId":"B","type":"reduce"}},{"refId":"C","queryType":"","relativeTimeRange":{"from":600,"to":0},"datasourceUid":"-100","model":{"conditions":[{"evaluator":{"params":[10],"type":"gt"},"operator":{"type":"and"},"query":{"params":["C"]},"reducer":{"params":[],"type":"last"},"type":"query"}],"datasource":{"type":"__expr__","uid":"-100"},"expression":"B","hide":false,"intervalMs":1000,"maxDataPoints":43200,"refId":"C","type":"threshold"}}],"updated":"2023-02-16T16:09:23Z","noDataState":"NoData","execErrState":"Error","for":"5m","annotations":{"summary":"Cpu Is Below 10%"}}
+  folder: |
+    {
+        "uid": "GnjUIAJVz",
+        "title": "Application-Alerts"
+    }    
+  contact_point: |
+    {"uid":"oDHTD01Vk","name":"slack-alert-channel","type":"slack","settings":{"url":"https://hooks.slack.com/services/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"},"disableResolveMessage":false}
+  contact_policy: |
+    {"receiver":"slack-alert-channel","group_by":["grafana_folder","alertname"]}
 
 
 
