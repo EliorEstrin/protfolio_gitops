@@ -13,6 +13,8 @@ data:
     yum install epel-release -y
     yum update -y
     yum install -y jq
+ 
+    #
 
 
     # Wait for to be available & healthy
@@ -69,7 +71,10 @@ data:
 
     function import_contact_point {
         
-        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/contact-points -d @grafana/slack.json --user ${USER}:${PASSWORD} -H "Content-Type: application/json")
+        jq '.settings.url = env.SLACK_URL ' grafana/slack.json> slack.json
+
+
+        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/contact-points -d @slack.json --user ${USER}:${PASSWORD} -H "Content-Type: application/json")
         SUCCESS=$(echo "$OUTPUT" | jq 'has("uid")')
         if [[ ${SUCCESS} ]]; then
             printf "\n########## Added Slack Contact Point Susscefully! #############################\n"
