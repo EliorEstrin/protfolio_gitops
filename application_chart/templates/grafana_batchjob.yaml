@@ -37,8 +37,6 @@ spec:
             secretKeyRef:
               name: grafanacred
               key: password
-
-
         command: ["/bin/sh","/grafana/curl-script.sh"]
         volumeMounts:
         - name: grafana-data
