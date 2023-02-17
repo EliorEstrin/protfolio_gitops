@@ -5,9 +5,12 @@ metadata:
   name: grafana-data
   namespace: monitoring
 data:
-  
+
+
   curl-script.sh: |
     #!/bin/bash
+    
+    set -xv
 
     yum install epel-release -y
     yum update -y
@@ -19,9 +22,9 @@ data:
         echo "Testing connection to Kibana"
         until [ "$(curl -s -o /dev/null -w '%{http_code}' http://${GRAFANA_URL}:${GRAFANA_PORT} --user 'admin:iamdevops')" == "200" ]; do
         sleep 5
-        echo "Waiting for Kibana to start..."
+        echo "Waiting for grafana to start..."
         done
-        echo "Kibana is now available"
+        echo "Grafana is now available"
     }
 
     function create_folder {
