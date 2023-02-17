@@ -27,6 +27,18 @@ spec:
           value: "{{ .Values.grafana.serviceName }}"
         - name: GRAFANA_PORT
           value: "{{ .Values.grafana.port }}"
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: grafanacred
+              key: user
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafanacred
+              key: password
+
+
         command: ["/bin/sh","/grafana/curl-script.sh"]
         volumeMounts:
         - name: grafana-data

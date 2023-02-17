@@ -9,18 +9,16 @@ data:
 
   curl-script.sh: |
     #!/bin/bash
-    
-    set -xv
 
     yum install epel-release -y
     yum update -y
     yum install -y jq
 
 
-    #Wait for  to be available & healthy
+    # Wait for to be available & healthy
     function wait_for_grafana {
         echo "Testing connection to Kibana"
-        until [ "$(curl -s -o /dev/null -w '%{http_code}' http://${GRAFANA_URL}:${GRAFANA_PORT} --user 'admin:iamdevops')" == "200" ]; do
+        until [ "$(curl -s -o /dev/null -w '%{http_code}' http://${GRAFANA_URL}:${GRAFANA_PORT} --user ${USER}:${PASSWORD})" == "200" ]; do
         sleep 5
         echo "Waiting for grafana to start..."
         done
@@ -30,7 +28,7 @@ data:
     function create_folder {
 
         echo "Creating a folder for the alerts..."
-        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/folders -d @grafana/folder.json --user "admin:iamdevops"  -H "Content-Type: application/json")
+        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/folders -d @grafana/folder.json --user ${USER}:${PASSWORD}  -H "Content-Type: application/json")
         SUCCESS=$(echo "$OUTPUT" | jq 'has("id")')
         if [[ ${SUCCESS} ]]; then
             printf "\n######### Created Folder Susscefully! #############################\n"
@@ -42,9 +40,9 @@ data:
 
     function Import_alerts {
         echo "importing the alerts..."
-        OUTPUT_1=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert1.json --user "admin:iamdevops"  -H "Content-Type: application/json")
-        OUTPUT_2=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert2.json --user "admin:iamdevops"  -H "Content-Type: application/json")
-        OUTPUT_3=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert3.json --user "admin:iamdevops"  -H "Content-Type: application/json")
+        OUTPUT_1=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert1.json --user ${USER}:${PASSWORD}  -H "Content-Type: application/json")
+        OUTPUT_2=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert2.json --user ${USER}:${PASSWORD}  -H "Content-Type: application/json")
+        OUTPUT_3=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/alert-rules  -d @grafana/alert3.json --user ${USER}:${PASSWORD}  -H "Content-Type: application/json")
 
         SUCCESS1=$(echo "$OUTPUT_1" | jq 'has("id")')
         SUCCESS2=$(echo "$OUTPUT_2" | jq 'has("id")')
@@ -71,7 +69,7 @@ data:
 
     function import_contact_point {
         
-        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/contact-points -d @grafana/slack.json --user "admin:iamdevops" -H "Content-Type: application/json")
+        OUTPUT=$(curl -X POST http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/contact-points -d @grafana/slack.json --user ${USER}:${PASSWORD} -H "Content-Type: application/json")
         SUCCESS=$(echo "$OUTPUT" | jq 'has("uid")')
         if [[ ${SUCCESS} ]]; then
             printf "\n########## Added Slack Contact Point Susscefully! #############################\n"
@@ -80,7 +78,7 @@ data:
         fi
 
         ## Updating policie for the contact
-        OUTPUT=$(curl -X PUT http://http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/policies -d @grafana/policy.json --user "admin:iamdevops" -H "Content-Type: application/json")
+        OUTPUT=$(curl -X PUT http://${GRAFANA_URL}:${GRAFANA_PORT}/api/v1/provisioning/policies -d @grafana/policy.json --user ${USER}:${PASSWORD} -H "Content-Type: application/json")
         SUCCESS=$(echo "$OUTPUT" | jq '.message == "policies updated"')
 
         if [[ ${SUCCESS} ]]; then
