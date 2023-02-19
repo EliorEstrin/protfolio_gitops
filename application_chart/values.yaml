@@ -10,7 +10,7 @@ port: '5000' #application is running on port 5000
 
 image:
   name: elior1001/protolio-todo
-  tag: 1.0.3
+  tag: 1.0.4
 
 imagePullSecret: "regcred"
 
