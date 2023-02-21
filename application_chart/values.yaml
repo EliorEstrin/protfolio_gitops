@@ -26,6 +26,8 @@ db_url: ""
 
 # mongo db Values must be declared so the apllication will be connect to the db
 mongodb:
+  replicaCount: 1
+## @param updateStrategy.type Strategy to use to replace existing MongoDB(&reg;) pods. When architecture=standalone and useStatefulSet=false,
   # FullnameOverride is the prefix for all services and resources that will be created by the mongo sub-chart
   fullnameOverride: "mongo-mongodb"
   auth:
