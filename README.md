@@ -1,6 +1,16 @@
 # DevOps Portfolio - GitOps Repo
 
-This repository contains the application chart for a todo application that uses MongoDB as a subchart. It also includes the application files used by Terraform to deploy the apps-of-apps.
+This repository contains the helm chart for a [todo application](https://github.com/elior7557/protfolio-DevOps-application).
+
+The application chart uses MongoDB as a subchart. <br>
+it contains a values.yaml for more modularity.
+
+It also includes the helm charts that the application relies on : 
+- sealed secret,cert manager, efk, grafana, prometheos,  nginx-ingress controller,
+
+The [infrastructure repo](https://github.com/elior7557/protfolio_infra.git) deploys the charts in this repository using terraform with the argo provider.
+
+in the automation process terrafrom apply the infrastructure(GKE + Argocd) and the argo deploys the helm charts in this repository.
 
 # Methodology 
 The repository follows the GitOps methodology, which is a way to manage infrastructure and applications by using version control tools. 
