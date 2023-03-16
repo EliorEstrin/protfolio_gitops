@@ -7,9 +7,9 @@ its purpose is to act as a source of truth to the desired state in the cluster.
 # The Various Helm Charts
 
 ### application Chart
-The application chart in `application_chart`(application_chart/) uses MongoDB as a subchart. <br>
+The application chart in `application_chart` uses MongoDB as a subchart. <br>
 It deploys a flask webserver that connected to a mongo db with an ingress.
-It contains a values.yaml for more modularity.<br>
+It contains a values.yaml(application_chart/values.yaml) for more modularity.<br>
 
 ### infrastructure Charts 
 It also includes the helm charts that the application relies on : 
