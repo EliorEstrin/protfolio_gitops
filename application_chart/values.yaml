@@ -47,7 +47,7 @@ ingress:
   # wether to use staging cerficiate or production cluster issuer if false set to production.
   prod: true
   # host is the dns for the ingress
-  host: taskmaster.site
+  host: protfolioapp.ddns.net
   # ingress_class the class name for the ingress
   ingress_class: "nginx"
   # Cluster issuer mail only if tls is enabled

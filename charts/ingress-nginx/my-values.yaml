@@ -1,6 +1,6 @@
 controller:
   service:
-    loadBalancerIP: 34.27.250.209 
+    loadBalancerIP: 34.67.174.17
   metrics:
     enabled: true
     service:
