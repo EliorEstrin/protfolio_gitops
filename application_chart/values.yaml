@@ -1,4 +1,5 @@
 
+############### Application settings ####################
 # name for labels and deployment
 name: "todoapp"
 
@@ -6,24 +7,26 @@ name: "todoapp"
 replicas: 3
 
 # port for application
-port: '5000' #application is running on port 5000
+port: '5000' 
 
 image:
   name: elior1001/protolio-todo
   tag: 1.0.14
 
-# CHNAGE BACK TO PRIVATE
-# imagePullSecret: "regcred"
+# Db url for the apllicationt to connect to the db
+db_url: "mongodb://root:root@mongo-mongodb-headless.default:27017"
 
-# DB_URL to pass to deployment should be base 64 encoded then it will be a sealed secret
-# a one option to pass the url
-sealedsecret:
-  enabled: false
-  db_url: "AgA2r848/PJueWjfjAzLUDX6s6dWDvKqU5pffmA4AM6qJjcOLjKWGPgnphbumUgFj+rw2dPtTeO4kuJE1stMtsc8iq22ITAP5Aeqxt3sECCimJNJkz6w4SxX9y6EnnCjfFkOlSIMxyqA2KfbgrfCDFEl5gXZ+C289y2zfZWLhOqNKQY9aFwIZiBKUZqiN0scVl1gqJZlYfYNHDylSsKlqy1LXHP8LjEhzSQr02GiCWDJBSAPV/oLJvl41z5Bf9NgGSP8VG3qwtIsr1Y12EFW3uig1hSNKHuimXSjhhkLvEcrpLmsy6IV5tfHR4C9sFjozO87RpTkRx4xg3eAyoXus+SWIL+tjCcBEjjBvL8O58KIf8I4IsjRF3FIYEMSbwIB329GeSl2jz3Jmf1nmHaUgTKdeH/eFJM8jQdIH/zYr2CyOgzvwYOMLSqUF16/0/d/sxeb+cRoc/ZqrgNWNJOBLpF+UybQQscN8UWCYi3QDAZ6x3XVLuQwUWHPF24iM1vx3fDvh/nyfkQ88Pxtxk6IYDKPaRTRKIWTOMJmFC2K2VKAd8hEgo5LjYBG3oNag5k+H4cX+zLNMe6EEqPwPbAuAwk70D8mg+hCH6HXRmirlhGJ9s606k3BQ2kpi8N2se4rs2YPfFmHnObBfOpbd0FCmCPm6pC3o2bqgS/Wy+rLtTAZW9JKa55CjAUfrJUGl0V15I5Pn/UCPdBDiGhdE7oc46yE54JJ0EEqyg9WkuAbRw2EijK/eG/6dadiUDk="
-#
-# if sealedsecret disabled pass a base 64 url to the mongodb
-# db_url: bW9uZ29kYjovL3Jvb3Q6cm9vdEBtb25nby1tb25nb2RiLWhlYWRsZXNz
-db_url: "mongodb://root:root@mongo-mongodb-0.mongo-mongodb.default.svc.cluster.local:27017,mongo-mongodb-1.mongo-mongodb.default.svc.cluster.local:27017/?replicaSet=rs0"
+#Requests and limits for deployment
+resources:
+  requests:
+    memory: "16Mi"
+    cpu: "125m"
+  limits:
+    memory: "128Mi"
+    cpu: "500m"
+
+#In case reposiorty Is private
+# imagePullSecret: "regcred"
 
 # mongo db Values must be declared so the apllication will be connect to the db
 mongodb:
@@ -39,6 +42,7 @@ mongodb:
     # existingSecret: "dbcred"
   persistence:
     size: 2Gi
+
 
 # Configuration about ingress
 ingress:
@@ -178,13 +182,4 @@ grafana:
     {"receiver":"slack-alert-channel","group_by":["grafana_folder","alertname"]}
 
 
-
-#Requests and limits for deployment
-resources:
-  requests:
-    memory: "16Mi"
-    cpu: "125m"
-  limits:
-    memory: "128Mi"
-    cpu: "500m"
 
