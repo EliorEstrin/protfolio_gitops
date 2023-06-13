@@ -1,0 +1,12 @@
+## Custom resource configuration
+crds:
+  # -- Install and upgrade CRDs
+  install: true
+  # -- Keep CRDs on chart uninstall
+  keep: false
+
+configs:
+  secret:
+    ## Argo expects the password in the secret to be bcrypt hashed. You can create this hash with
+    ## `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
+    argocdServerAdminPassword: "$2a$10$uXo9DIogMKFPHcIK/NIx2ee5VJfDxy4AGwGyaa/uYbBQtZcaZTVSC"
