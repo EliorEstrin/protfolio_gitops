@@ -10,6 +10,8 @@ spec:
   source:
     path: infra-apps
     repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
+    # Optinal
+    # repoURL: 'https://github.com/PhantomPixelist/protfolio_gitops'
     targetRevision: HEAD
   project: default
   syncPolicy:

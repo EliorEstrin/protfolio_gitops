@@ -6,6 +6,10 @@ its purpose is to act as a source of truth to the desired state in the cluster.
 
 # The Various Helm Charts
 
+## Deployment
+To deploy the application on a cluster running with argo cd - Do the following:
+-  
+
 ### application Chart
 The application chart in `application_chart` uses MongoDB as a subchart. <br>
 It deploys a flask webserver that connected to a mongo db with an ingress.
@@ -22,5 +26,4 @@ in the automation process terrafrom apply the infrastructure(GKE + Argocd) and t
 
 # Methodology 
 The repository follows the GitOps methodology, which is a way to manage infrastructure and applications by using version control tools. 
-
 ArgoCD uses this repository as a source of truth for the desired state of the application in the cluster.
