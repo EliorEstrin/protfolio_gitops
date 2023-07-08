@@ -9,7 +9,8 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: charts/grafana
-    repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
+    # repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
+    repoURL: 'https://github.com/PhantomPixelist/protfolio_gitops' # Change to ssh
     targetRevision: HEAD
     helm:
       valueFiles:

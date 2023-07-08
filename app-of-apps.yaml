@@ -9,10 +9,8 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: infra-apps
-    repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
-    # Optinal
-    # repoURL: 'https://github.com/PhantomPixelist/protfolio_gitops'
-    targetRevision: HEAD
+    repoURL: 'https://github.com/PhantomPixelist/protfolio_gitops' # Change to ssh
+    targetRevision: digial_ocean  # Change back to HEAD to master
   project: default
   syncPolicy:
     automated:

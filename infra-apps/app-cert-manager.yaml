@@ -9,7 +9,8 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: charts/cert-manager
-    repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
+    repoURL: 'https://github.com/PhantomPixelist/protfolio_gitops' # Change to ssh
+    # repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
     targetRevision: HEAD
   project: default
   syncPolicy:
