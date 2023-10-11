@@ -25,6 +25,8 @@ resources:
     memory: "128Mi"
     cpu: "500m"
 
+sealedsecret:
+  enabled: false
 #In case reposiorty Is private
 # imagePullSecret: "regcred"
 

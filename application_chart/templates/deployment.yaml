@@ -27,8 +27,10 @@ spec:
               key: DB_URL
         resources:
 {{ toYaml .Values.resources | indent 10 }}
+      {{- if .Values.imagePullSecret  }}
       imagePullSecrets:
         - name: {{ .Values.imagePullSecret }}
+      {{- end }}
 
          
 
