@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: application_chart
-    repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
+    repoURL: 'https://github.com/EliorEstrin/protfolio_gitops.git'
     targetRevision: digial_ocean 
     helm:
       valueFiles:
