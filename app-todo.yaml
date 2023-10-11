@@ -10,7 +10,7 @@ spec:
   source:
     path: application_chart
     repoURL: 'git@github.com:elior7557/protfolio_gitops.git'
-    targetRevision: HEAD
+    targetRevision: digial_ocean 
     helm:
       valueFiles:
         - values.yaml
